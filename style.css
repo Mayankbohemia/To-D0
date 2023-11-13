@@ -4,24 +4,29 @@
     margin: 0;
 }
 
+/* DARK-BACKGROUND, LIGHT-CARD, DARKEST-ELEMENTS */
+
 *:focus {
     outline: none;
 }
 
 body {
     background-color: rgb(0, 0, 0);
-
+    font-family: 'Inter', sans-serif;
+    /* background-color: rgb(235, 98, 98); */
+    
 }
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
     align-items: center;
     gap: 50px;
     margin-top: 20px;
     color: rgb(171, 168, 168);
-   
+
 }
 
 .btn__add {
@@ -113,8 +118,6 @@ body {
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-
-
 }
 
 .box {
@@ -128,6 +131,7 @@ body {
     color: white;
     font-size: 1.3rem;
     overflow-y: scroll;
+   
 
 
 }
@@ -145,12 +149,14 @@ body {
 }
 
 .category {
-    margin-top: 10px;
-    background-color: rgb(13 17 23);
-    width: 97%;
-    padding: 15px;
-    margin-left: 6px;
-    /* position: fixed; */
+   
+   margin-top: 10px;
+   background-color: rgb(13 17 23);
+   width: 338px;
+   padding: 15px;
+   margin-left: 6px;
+   position: fixed;
+    
 
 }
 
@@ -174,6 +180,10 @@ body {
     margin-bottom: 10px;
 
 }
+.task__conntainer {
+    margin-top: 70px;
+    /* overflow-y: scroll; */
+}
 
 .blur {
     position: fixed;
@@ -186,6 +196,7 @@ body {
     backdrop-filter: blur(1.5px);
     transition: 1s;
 }
+
 .backdrop {
     transition: 1s;
 }

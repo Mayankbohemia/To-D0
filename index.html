@@ -2,75 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-   
-    <div class="container">
+
+  <div class="container">
+
+    <h2>PlanIt</h2>
+    <div class="add__task">
+      <button class="btn__add"><span>+</span> Add new task</button>
+
+    </div>
+    <div class="tasks">
+      <div class="box all">
+        <div class="category">
+          Todo
+        </div>
         
-        <h2>PlanIt</h2>
-        <div class="add__task">
-            <button class="btn__add"><span>+</span> Add new task</button>
+        <div class="task__conntainer">
+          
+
+
 
         </div>
-        <div class="tasks">
-            <div class="box all">
-                <div class="category">
-                    <h3>Todo</h3>
-                </div>
-                <div class="task__conntainer">
-                    <div class="todo all__tasks">
-                        Workout in the morning
+      </div>
+      <div class="box progress">
+        <div class="category">
+          <h5>Done</h5>
+        </div>
+        <div class="task__conntainer">
+          <div id=${ele} class="todo all__tasks" draggable="true">
+            <h5>Workout</h5>
+       
+       </div>
+   
 
-                    </div>
-                    <div class="todo all__tasks">
-                        Create a playlist of music for a momth
 
-                    </div>
-                    <div class="todo all__tasks">
-                        Write a blog
-
-                    </div>
-                    <div class="todo all__tasks">
-                        Create a seperate folders for the data entries
-
-                    </div>
-                    <div class="todo all__tasks">
-                        Update podcast subscriptions
-
-                    </div>
-                </div>
-            </div>
-            <div class="box progress">
-                <div class="category">
-                    <h5>Progress</h5>
-                </div>
-
-            </div>
-            <div class=" box done">
-                <div class="category">
-                    <h5>Done</h5>
-                </div>
-
-            </div>
 
         </div>
-        <div class="task__modal">
-            <form class="form add__form" name="addForm">
-                <input class="task input__add" type="text" name="task"> <span class="error task__error"></span> <br>
-                <button class="btn add" type="submit" name="addBtn">Add</button>
-            </form>
 
+      </div>
+      <div class=" box done">
+        <div class="category">
+          <h5>Done</h5>
         </div>
+
+      </div>
 
     </div>
-    <div class="backdrop">
+    <div class="task__modal">
+      <form class="form add__form" name="addForm">
+        <input class="task input__add" type="text" name="task"> <span class="error task__error"></span> <br>
+        <button class="btn add" type="submit" name="addBtn">Add</button>
+      </form>
 
     </div>
+
+  </div>
+  <div class="backdrop">
+
+  </div>
 
 
 </body>
