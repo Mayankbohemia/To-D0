@@ -3,17 +3,26 @@
   padding: 0;
   margin: 0;
 }
-
-/* DARK-BACKGROUND, LIGHT-CARD, DARKEST-ELEMENTS */
-
+input {
+  caret-color: red;
+}
 *:focus {
   outline: none;
 }
+*::-webkit-scrollbar {
+  width: 0.6vw;
+}
 
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(160, 7, 32);
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 body {
   background-color: #08313a;
   font-family: "Inter", sans-serif;
-  /* background-color: rgb(235, 98, 98); */
 }
 
 .container {
@@ -21,14 +30,11 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 100vh;
-
   align-items: center;
   gap: 50px;
   margin-top: 20px;
   color: rgb(171, 168, 168);
 }
-
 .btn__add {
   padding: 4px 8px;
   color: rgb(171, 168, 168);
@@ -39,11 +45,9 @@ body {
   transition: 0.3s;
   margin-top: 30px;
 }
-
 .btn__add span {
   margin-right: 10px;
 }
-
 .btn__add:hover {
   transform: scale(1.1);
   color: white;
@@ -51,14 +55,12 @@ body {
 }
 
 /* Add Modal */
-.task__modal {
+.modal {
   position: absolute;
   background-color: rgb(22 28 34);
   width: 300px;
   min-width: 200px;
-
   top: 40%;
-  /* bottom: 50%; */
   left: 40%;
   right: 50%;
   height: 150px;
@@ -70,12 +72,9 @@ body {
   z-index: 1024;
   transform: scale(0);
 }
-
 .show__modal {
   transform: scale(1);
 }
-
-
 .form {
   display: flex;
   flex-direction: column;
@@ -83,7 +82,6 @@ body {
   align-items: center;
   width: 90%;
 }
-
 .btn {
   width: 75px;
   height: 26px;
@@ -94,29 +92,14 @@ body {
   transition: 0.3s;
   font-size: 1.17rem;
 }
-
 .btn:hover {
   transform: scale(1.1);
 }
-
 .error {
   color: red;
 }
 
 /* ---------------------------------Tasks--------------------------------- */
-
-/* .box::-webkit-scrollbar {
-    width: 0.2vw;
-}
-
-.box::-webkit-scrollbar-thumb {
-    background-color: rgb(160, 7, 32);
-}
-
-.box::-webkit-scrollbar-track {
-    background-color: transparent;
-} */
-
 .blur {
   position: fixed;
   top: 0;
@@ -128,11 +111,9 @@ body {
   backdrop-filter: blur(1.5px);
   transition: 1s;
 }
-
 .backdrop {
   transition: 1s;
 }
-
 .drop__zone__over {
   opacity: 0.5;
 }
@@ -143,50 +124,73 @@ body {
   align-items: flex-start;
   justify-content: start;
   gap: 16px;
-
   padding: 24px 32px;
-
-  /* overflow: scroll; */
   height: 100%;
 }
 .heading {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .swim-lane {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  
-    background: #f4f4f4;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  
-    padding: 12px;
-    border-radius: 4px;
-    width: 225px;
-    min-height: 120px;
-  
-    flex-shrink: 0;
-  }
-  .task {
-    background: white;
-    color: black;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  
-    padding: 12px;
-    border-radius: 4px;
-  
-    font-size: 16px;
-    cursor: move;
-  }
-  .is-dragging {
-    scale: 1.05;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-    background: rgb(50, 50, 50);
-    color: white;
-  }
-  
-  
-  
- 
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #08313a;
+}
+.swim-lane {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f4f4f4;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  padding: 12px;
+  border-radius: 4px;
+  width: 225px;
+  min-height: 120px;
+  flex-shrink: 0;
+}
+.task {
+  background: white;
+  color: black;
+  position: relative;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: move;
+  transition: 0.3s;
+}
+.is-dragging {
+  scale: 1.05;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  background: rgb(50, 50, 50);
+  color: white;
+}
+.date {
+  font-size: 10px;
+  color: gray;
+}
+.editbtn {
+  height: 16px;
+  width: 16px;
+  margin-right: 13px;
+  cursor: pointer;
+}
+.deletebtn {
+  cursor: pointer;
+}
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.7rem;
+}
+.task:hover {
+  transform: scale(1.1);
+  color: #08313a;
+}
+.progress {
+  color: red;
+}
+.done {
+  color: green;
+}
+.progress__container {
+  background-color: red;
+}

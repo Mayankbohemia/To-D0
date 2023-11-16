@@ -25,35 +25,84 @@
       <div class="todo__container">
         <div class="swim-lane" id="todo-lane">
           <h3 class="heading">TODO</h3> 
-          <div class="task" draggable="true">
-            Get groceries
+          <div class="task todo" draggable="true">
             
+            Write a blog <br>
+            <div class="icons">
+            <img class="deletebtn" src="bin.png" alt="">
+            <img class="editbtn" src="edit.png" alt="">
+            </div>          
+             <span class="date">12/12/2023</span>            
           </div>
-          <div class="task" draggable="true">Get groceries</div>
-          <div class="task" draggable="true">Get groceries</div>                    
+          <div class="task" draggable="true">
+            Get groceries  <br>
+            <div class="icons">
+              <img class="deletebtn" src="bin.png" alt="">
+              <img class="editbtn" src="edit.png" alt="">
+              </div> 
+            <span class="date">12/12/2023</span>
+          </div>
+          <div class="task" draggable="true">
+            <div class="editable__text" data-test-id="123">
+              Workout in the morning 
+            </div>
+            
+            <div class="icons">
+              <img class="deletebtn" src="bin.png" alt="">
+              <img class="editbtn" src="edit.png" alt="">
+              </div> 
+            <span class="date">12/12/2023</span>
+          </div>                    
         </div>
-
-        <div class="swim-lane">
-          <h3 class="heading">Progress</h3>
-          <div class="task" draggable="true">Binge 80 hours of Game of Thrones</div>            
+        <div class="swim-lane">          
+          <h3 class="heading progress">Progress</h3>
+          <div class="task" draggable="true">
+            <div class="editable__text">
+              Binge 80 hours of Game of Thrones 
+            </div>            
+            <div class="icons">
+              <img class="deletebtn" src="bin.png" alt="">
+              <img class="editbtn" src="edit.png" alt="">             
+              </div> 
+            <span class="date">12/12/2023</span>
+          </div> 
         </div>
-
         <div class="swim-lane">
-          <h3 class="heading">Done</h3>
-          <div class="task" draggable="true">  Watch video of a man raising a grocery store lobster as a pet</div>             
+          <h3 class="heading done">Done</h3>
+          <div class="task" draggable="true"> 
+             Watch video of a man raising a grocery store lobster as a pet <br>
+             <div class="icons">
+              <img class="deletebtn" src="bin.png" alt="deletebutton">
+              <img class="editbtn" src="edit.png" alt="editbutton">
+              </div> 
+             <span class="date">12/12/2023</span>
+          </div>             
           </p>
         </div>
       </div>
     </div>
 
-    <!-- -----------------------MODAL----------------- -->
-    <div class="task__modal">
+    <!-- -----------------------Add-MODAL----------------- -->
+    <div class="task__modal modal">
       <form class="form add__form" name="addForm">
         <input class="input__add" type="text" name="task" />
         <span class="error task__error"></span> <br />
         <button class="btn add" type="submit" name="addBtn">Add</button>
       </form>
     </div>
+
+    <!-- ----------------------------Edit-MODAL------------------- -->
+    <div class="edit__modal modal">
+      <form class="form edit__form" name="editForm">
+        <input class="input__edit" type="text" name="edit" />
+        <span class="error task__error"></span> <br />
+        <button class="btn edit" type="submit" name="editBtn">Edit</button>
+      </form>
+    </div>
+
+    <!-- --------------------Preview Modal------------------------------ -->
+
+
 
     <!-- --------------------------------OverLay--------------- -->
     <div class="backdrop"></div>
