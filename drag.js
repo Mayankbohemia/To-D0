@@ -1,27 +1,54 @@
-const draggableTasks = document.querySelectorAll(".task");
-const droppedTasks = document.querySelectorAll(".swim-lane");
+function drag() {
+    const draggables = document.querySelectorAll(".task");
+    const droppables = document.querySelectorAll(".swim-lane");
 
-let draggedTaskIdentify = null;
-// console.log(droppedTasks);
-draggableTasks.forEach((task) => {
-  task.addEventListener("dragstart", function () {
-    // console.log(this);
-    draggedTaskIdentify = this;
-    task.classList.add("is-dragging");
-  });
-  task.addEventListener("dragend", function () {
-    draggedTaskIdentify = null;
-    task.classList.remove("is-dragging");
-  });
-});
+    draggables.forEach((task) => {
+        task.addEventListener("dragstart", () => {
+          task.classList.add("is-dragging");
+        });
+        task.addEventListener("dragend", () => {
+          task.classList.remove("is-dragging");
+          task.classList.add("transition");
+        });
+      });
 
-droppedTasks.forEach((curr) => {
-  curr.addEventListener("dragover", function (e) {
-    // console.log('dropover')
-    e.preventDefault();
+
+droppables.forEach((zone) => {
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+  
+      const bottomTask = insertAboveTask(zone, e.clientY);
+      const curTask = document.querySelector(".is-dragging");
+     
+  
+      if (!bottomTask) {
+        zone.appendChild(curTask);
+      } else {
+        zone.insertBefore(curTask, bottomTask);
+      }
+    });
   });
-  curr.addEventListener("drop", function (e) {
-    this.appendChild(draggedTaskIdentify);
-    // console.log(this);
-  });
-});
+  
+  const insertAboveTask = (zone, mouseY) => {
+    const els = zone.querySelectorAll(".task:not(.is-dragging)");
+  
+    let closestTask = null;
+    let closestOffset = Number.NEGATIVE_INFINITY;
+  
+    els.forEach((task) => {
+      const { top } = task.getBoundingClientRect();
+  
+      const offset = mouseY - top;
+  
+      if (offset < 0 && offset > closestOffset) {
+        closestOffset = offset;
+        closestTask = task;
+      }
+    });
+  
+    return closestTask;
+  };
+}
+
+
+

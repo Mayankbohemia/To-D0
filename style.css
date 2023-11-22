@@ -10,7 +10,7 @@ input {
   outline: none;
 }
 *::-webkit-scrollbar {
-  width: 0.6vw;
+  width: 0.5vw;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -20,15 +20,32 @@ input {
 *::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+/* ----------------------Theme----------------------------------- */
+.theme-light {
+  --color-primary: #08313a;
+  --color-secondary: #fbfbfe;
+  --color-accent: #fd6f53;
+  --font-color: #000000;
+}
+.theme-dark {
+  --color-primary: #17ed90;
+  --color-secondary: #243133;
+  --color-accent: #12cdea;
+  --font-color: #ffffff;
+}
+
 body {
-  background-color: #08313a;
+  background-color: var(--color-primary);
   font-family: "Inter", sans-serif;
 }
+
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
   width: 100%;
   align-items: center;
   gap: 50px;
@@ -75,6 +92,9 @@ body {
 .show__modal {
   transform: scale(1);
 }
+.preview {
+  transform: scale(1);
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -107,8 +127,8 @@ body {
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(1.5px);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
   transition: 1s;
 }
 .backdrop {
@@ -123,6 +143,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: start;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 24px 32px;
   height: 100%;
@@ -144,6 +165,7 @@ body {
   width: 225px;
   min-height: 120px;
   flex-shrink: 0;
+  
 }
 .task {
   background: white;
@@ -155,12 +177,15 @@ body {
   font-size: 16px;
   cursor: move;
   transition: 0.3s;
+  
 }
 .is-dragging {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgb(50, 50, 50);
   color: white;
+ opacity: 0;
+ transition: 3s;
 }
 .date {
   font-size: 10px;
@@ -182,7 +207,7 @@ body {
   gap: 0.7rem;
 }
 .task:hover {
-  transform: scale(1.1);
+  transform: scale(0.95);
   color: #08313a;
 }
 .progress {
@@ -194,3 +219,43 @@ body {
 .progress__container {
   background-color: red;
 }
+#add__focus {
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-top: 10px;
+  width: 90%;
+}
+#edit__focus {
+  border-radius: 5px;
+  padding-left: 5px;
+  height: 30px;
+  width: 90%;
+}
+.transition{
+  transition: 0.8s;
+}
+
+.theme {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 1000px;
+  height: 25px;
+  width: 70px;  
+  border-radius: 50px;
+  background-color: white;
+ 
+}
+.switch {  
+  height: 22px;
+  width: 30%;
+  border-radius: 50%;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+  background-color: black;   
+}
+.position__theme {
+  justify-content: end; 
+}
+

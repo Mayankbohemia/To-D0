@@ -13,36 +13,23 @@
     />
   </head>
 
-  <body>
+  <body class="theme-light">
     <div class="container">
       <h2>PlanIt</h2>
+      <div class="theme ">
+        <div class="switch">
+
+        </div>
+      </div>
       <div class="add__task">
         <button class="btn__add"><span>+</span> Add new task</button>
       </div>
 
       <!-- ---------------------------------Todo---------------------- -->
-
       <div class="todo__container">
         <div class="swim-lane" id="todo-lane">
-          <h3 class="heading">TODO</h3> 
-          <div class="task todo" draggable="true">
-            
-            Write a blog <br>
-            <div class="icons">
-            <img class="deletebtn" src="bin.png" alt="">
-            <img class="editbtn" src="edit.png" alt="">
-            </div>          
-             <span class="date">12/12/2023</span>            
-          </div>
-          <div class="task" draggable="true">
-            Get groceries  <br>
-            <div class="icons">
-              <img class="deletebtn" src="bin.png" alt="">
-              <img class="editbtn" src="edit.png" alt="">
-              </div> 
-            <span class="date">12/12/2023</span>
-          </div>
-          <div class="task" draggable="true">
+          <h3 class="heading">TODO</h3>          
+          <!-- <div class="task" draggable="true">
             <div class="editable__text" data-test-id="123">
               Workout in the morning 
             </div>
@@ -52,7 +39,7 @@
               <img class="editbtn" src="edit.png" alt="">
               </div> 
             <span class="date">12/12/2023</span>
-          </div>                    
+          </div>                     -->
         </div>
         <div class="swim-lane">          
           <h3 class="heading progress">Progress</h3>
@@ -70,7 +57,9 @@
         <div class="swim-lane">
           <h3 class="heading done">Done</h3>
           <div class="task" draggable="true"> 
-             Watch video of a man raising a grocery store lobster as a pet <br>
+            <div class="editable__text">
+                  Watch video of a man raising a grocery store lobster as a pet 
+            </div>         
              <div class="icons">
               <img class="deletebtn" src="bin.png" alt="deletebutton">
               <img class="editbtn" src="edit.png" alt="editbutton">
@@ -85,7 +74,8 @@
     <!-- -----------------------Add-MODAL----------------- -->
     <div class="task__modal modal">
       <form class="form add__form" name="addForm">
-        <input class="input__add" type="text" name="task" />
+        <input class="input__add add__focus"id="edit__focus"  type="text" name="task" placeholder="Please add your task" />
+        <input class="input__edit" id="edit__focus" type="text" name="description" placeholder="Add Description" />
         <span class="error task__error"></span> <br />
         <button class="btn add" type="submit" name="addBtn">Add</button>
       </form>
@@ -94,19 +84,24 @@
     <!-- ----------------------------Edit-MODAL------------------- -->
     <div class="edit__modal modal">
       <form class="form edit__form" name="editForm">
-        <input class="input__edit" type="text" name="edit" />
-        <span class="error task__error"></span> <br />
+        <input class="input__edit " id="edit__focus" type="text" name="edit" placeholder="Edit your task" />
+        <span class="error task__error" id="error__edit"></span> <br />
         <button class="btn edit" type="submit" name="editBtn">Edit</button>
       </form>
     </div>
 
     <!-- --------------------Preview Modal------------------------------ -->
+    <div class="modal preview__modal"> 
+      <h1>asdchosdcoasdoie</h1>
+
+
+    </div>
 
 
 
     <!-- --------------------------------OverLay--------------- -->
     <div class="backdrop"></div>
   </body>
-  <script src="todo.js"></script>
   <script src="drag.js"></script>
+  <script src="todo.js"></script>  
 </html>
