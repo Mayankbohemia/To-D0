@@ -13,7 +13,7 @@
     />
   </head>
 
-  <body class="theme-light">
+  <body class="theme-light body">
     <div class="container">
       <h2>PlanIt</h2>
       <div class="theme ">
@@ -29,45 +29,15 @@
       <div class="todo__container">
         <div class="swim-lane" id="todo-lane">
           <h3 class="heading">TODO</h3>          
-          <!-- <div class="task" draggable="true">
-            <div class="editable__text" data-test-id="123">
-              Workout in the morning 
-            </div>
-            
-            <div class="icons">
-              <img class="deletebtn" src="bin.png" alt="">
-              <img class="editbtn" src="edit.png" alt="">
-              </div> 
-            <span class="date">12/12/2023</span>
-          </div>                     -->
+        
         </div>
-        <div class="swim-lane">          
+        <div class="swim-lane" id="progress-lane">          
           <h3 class="heading progress">Progress</h3>
-          <div class="task" draggable="true">
-            <div class="editable__text">
-              Binge 80 hours of Game of Thrones 
-            </div>            
-            <div class="icons">
-              <img class="deletebtn" src="bin.png" alt="">
-              <img class="editbtn" src="edit.png" alt="">             
-              </div> 
-            <span class="date">12/12/2023</span>
-          </div> 
+        
         </div>
-        <div class="swim-lane">
+        <div class="swim-lane"  id="completed-tasks">
           <h3 class="heading done">Done</h3>
-          <div class="task" draggable="true"> 
-            <div class="editable__text">
-                  Watch video of a man raising a grocery store lobster as a pet 
-            </div>         
-             <div class="icons">
-              <img class="deletebtn" src="bin.png" alt="deletebutton">
-              <img class="editbtn" src="edit.png" alt="editbutton">
-              </div> 
-             <span class="date">12/12/2023</span>
-          </div>             
-          </p>
-        </div>
+     
       </div>
     </div>
 
@@ -75,7 +45,7 @@
     <div class="task__modal modal">
       <form class="form add__form" name="addForm">
         <input class="input__add add__focus"id="edit__focus"  type="text" name="task" placeholder="Please add your task" />
-        <input class="input__edit" id="edit__focus" type="text" name="description" placeholder="Add Description" />
+        <input class="input__edit" id="edit__focus" type="text" name="description" placeholder="Add Description" required/>
         <span class="error task__error"></span> <br />
         <button class="btn add" type="submit" name="addBtn">Add</button>
       </form>
@@ -92,12 +62,13 @@
 
     <!-- --------------------Preview Modal------------------------------ -->
     <div class="modal preview__modal"> 
-      <h1>asdchosdcoasdoie</h1>
+      <div class="details">       
 
+      </div>
+      <div class="last__modified">     
 
+      </div>
     </div>
-
-
 
     <!-- --------------------------------OverLay--------------- -->
     <div class="backdrop"></div>

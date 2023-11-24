@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
+  margin: 0;  
+  transition: 1;
 }
 input {
   caret-color: red;
@@ -20,41 +21,55 @@ input {
 *::-webkit-scrollbar-track {
   background-color: transparent;
 }
+::placeholder {
+  color: var(--font-color);
+}
+
 
 /* ----------------------Theme----------------------------------- */
 .theme-light {
-  --color-primary: #08313a;
-  --color-secondary: #fbfbfe;
-  --color-accent: #fd6f53;
+  --color-primary: #08313a;  
+  --modal-color: rgb(22 28 34);
   --font-color: #000000;
+  --input-color: white;
+  --backdrop--color: rgba(255, 255, 255, 0.3);
+  --container-color: white;
+  --box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  --task-background: white;
+  --text: white;
 }
 .theme-dark {
-  --color-primary: #17ed90;
-  --color-secondary: #243133;
-  --color-accent: #12cdea;
-  --font-color: #ffffff;
+  --color-primary: black;  
+  --modal-color: white;
+  --font-color: rgb(191, 186, 186);
+  --input-color: black;
+  --backdrop--color: rgba(0, 0, 0, 0.3);
+  --container-color: gray;
+  --box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.25);
+  --task-background: rgb(52, 49, 49);
+  --text: black;
 }
 
 body {
   background-color: var(--color-primary);
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;   
 }
-
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
   width: 100%;
   align-items: center;
   gap: 50px;
-  margin-top: 20px;
-  color: rgb(171, 168, 168);
+  margin-top: 20px;  
+}
+.container h2 {
+  color: white;
 }
 .btn__add {
   padding: 4px 8px;
-  color: rgb(171, 168, 168);
+  color: #fbfbfe;
   background-color: transparent;
   border: solid rgb(171, 168, 168) 1px;
   border-radius: 10px;
@@ -74,7 +89,7 @@ body {
 /* Add Modal */
 .modal {
   position: absolute;
-  background-color: rgb(22 28 34);
+  background-color: var(--modal-color);
   width: 300px;
   min-width: 200px;
   top: 40%;
@@ -89,12 +104,27 @@ body {
   z-index: 1024;
   transform: scale(0);
 }
+.modal input {
+  background-color: var(--input-color);
+  color: var(--font-color);
+}
 .show__modal {
   transform: scale(1);
 }
 .preview {
   transform: scale(1);
+  color: white;
 }
+.preview__modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 10px;
+  color: var(--text)
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -127,7 +157,7 @@ body {
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--backdrop--color);
   backdrop-filter: blur(2px);
   transition: 1s;
 }
@@ -158,38 +188,44 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: #f4f4f4;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   padding: 12px;
   border-radius: 4px;
   width: 225px;
   min-height: 120px;
   flex-shrink: 0;
-  
+  background-color: var(--container-color);
+  box-shadow: var(--box-shadow);
 }
 .task {
   background: white;
-  color: black;
+  color: var(--font-color);
   position: relative;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
   padding: 12px;
   border-radius: 4px;
   font-size: 16px;
   cursor: move;
-  transition: 0.3s;
-  
+  transition: 0.3s;  
+  background-color: var(--task-background);
 }
 .is-dragging {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgb(50, 50, 50);
   color: white;
- opacity: 0;
- transition: 3s;
+  opacity: 0;
+  transition: 3s;
 }
 .date {
   font-size: 10px;
   color: gray;
+}
+.description {
+  font-size: 12px;
+  color: gray;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .editbtn {
   height: 16px;
@@ -208,7 +244,6 @@ body {
 }
 .task:hover {
   transform: scale(0.95);
-  color: #08313a;
 }
 .progress {
   color: red;
@@ -231,31 +266,32 @@ body {
   height: 30px;
   width: 90%;
 }
-.transition{
+.transition {
   transition: 0.8s;
 }
-
 .theme {
   display: flex;
   justify-content: start;
   align-items: center;
   margin-left: 1000px;
   height: 25px;
-  width: 70px;  
+  width: 70px;
   border-radius: 50px;
   background-color: white;
- 
 }
-.switch {  
+.switch {
   height: 22px;
   width: 30%;
   border-radius: 50%;
   margin-left: 2px;
   margin-right: 2px;
   cursor: pointer;
-  background-color: black;   
+  background-color: black;
 }
 .position__theme {
-  justify-content: end; 
+  justify-content: end;
 }
-
+.details {
+  margin-left: 8px;
+  margin-right: 8px;
+}
