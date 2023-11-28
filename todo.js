@@ -16,20 +16,28 @@ const themeToggle = theme.querySelector(".switch");
 const taskDesc = document.querySelector(".details");
 
 //------------------Local Storage--------------------------
+
+function setLocalData(dataName, data) {
+  return localStorage.setItem(dataName, JSON.stringify(data));
+}
+
 const allItemsdata = localStorage.getItem("all_items")
   ? JSON.parse(localStorage.getItem("all_items"))
   : [];
-localStorage.setItem("all_items", JSON.stringify(allItemsdata));
+
+setLocalData("all_items", allItemsdata);
 
 const progressItemsData = localStorage.getItem("progress_items")
   ? JSON.parse(localStorage.getItem("progress_items"))
   : [];
-localStorage.setItem("progress_items", JSON.stringify(progressItemsData));
+
+setLocalData("progress_items", progressItemsData);
 
 const completedItemsData = localStorage.getItem("completed_items")
   ? JSON.parse(localStorage.getItem("completed_items"))
   : [];
-localStorage.setItem("completed_items", JSON.stringify(completedItemsData));
+
+setLocalData("completed_items", completedItemsData);
 
 const themeSwitch = localStorage.getItem("theme")
   ? localStorage.getItem("theme")
@@ -109,14 +117,19 @@ function editValidate(data, i, localData, str) {
     backdrop.classList.remove("blur");
     data.innerText = inputValue.value;
     localData[i].todo = inputValue.value;
-    if (str === "all") {
-      localStorage.setItem("all_items", JSON.stringify(localData));
-    }
-    if (str === "progress") {
-      localStorage.setItem("progress_items", JSON.stringify(localData));
-    }
-    if (str === "completed") {
-      localStorage.setItem("completed_items", JSON.stringify(localData));
+    switch (str) {
+      case "all":
+        // localStorage.setItem("all_items", JSON.stringify(localData));
+        setLocalData("all_items",localData)
+        break;
+      case "progress":
+        // localStorage.setItem("progress_items", JSON.stringify(localData));
+        setLocalData("progress_items",localData);
+        break;
+      case "completed":
+        // localStorage.setItem("completed_items", JSON.stringify(localData));
+        setLocalData("completed_items",localData);
+        break;
     }
 
     data = null;
@@ -124,136 +137,62 @@ function editValidate(data, i, localData, str) {
 }
 editValidate();
 
-//====================All Tasks=======================================
-function allTasks() {
+// --------------Adding Tasks----------------------
+function renderTasks(data, container, type) {
   let html = "";
-  allItemsdata.forEach((curr, i) => {
-    // console.log(curr);
+  data.forEach((curr) => {
     html += `
-  <div class="task" draggable="true" value=${curr.id} id="allTask" >
-            <div class="editable__text" data-test-id="123" value=${curr.description}>
-              ${curr.todo}
-            </div>
-            <div class="description">
-           ${curr.description}
-          </div>
-            
-            <div class="icons" value=${curr.description}>
-              <img class="deletebtn img" src="bin.png" alt="deletebutton">
-              <img class="editbtn img" src="edit.png" alt="editbutton">
-              </div> 
-            <span class="date" value=${curr.description}>12/12/2023</span>
-          </div>  `;
-  });
-  addTask.insertAdjacentHTML("beforeend", html);
-  deleteTodoHandler(allItemsdata, "all");
-  editTodoHandler(allItemsdata, "all");
-  displayDate();
-}
-allTasks();
-
-//====================Progress Tasks--------------------------//
-function progress() {
-  let html = "";
-  progressItemsData.forEach((curr) => {
-    // console.log(curr)
-    html += `
-    <div class="task" draggable="true" value=${curr.id} id="progressTask">
-    <div class="editable__text">
-      ${curr.todo}
-    </div> 
-    <div class="description">
-    ${curr.description}
-   </div>           
-    <div class="icons">
-      <img class="deletebtn img" src="bin.png" alt="">
-      <img class="editbtn img" src="edit.png" alt="">             
-      </div> 
-    <span class="date">12/12/2023</span>
-  </div> `;
-  });
-  addProgress.insertAdjacentHTML("beforeend", html);
-  deleteTodoHandler(progressItemsData, "progress");
-  editTodoHandler(progressItemsData, "progress");
-  displayDate();
-}
-
-progress();
-
-// ---------------------Completed Tasks-----------------------------
-function completed() {
-  let html = "";
-  completedItemsData.forEach((curr) => {
-    html += `
-     <div class="task" draggable="true" value=${curr.id}> 
-    <div class="editable__text">
+      <div class="task" draggable="true" value=${curr.id}>
+        <div class="editable__text" data-test-id="123" value=${curr.description}>
           ${curr.todo}
-    </div> 
-    <div class="description">
-    ${curr.description}
-   </div>        
-     <div class="icons">
-      <img class="deletebtn img" src="bin.png" alt="deletebutton">
-      <img class="editbtn img" src="edit.png" alt="editbutton">
-      </div> 
-     <span class="date">12/12/2023</span>
-  </div>             
-  </p>
-</div>  
-    `;
+        </div>
+        <div class="description">
+          ${curr.description}
+        </div>
+        <div class="icons" value=${curr.description}>
+          <img class="deletebtn img" src="bin.png" alt="deletebutton">
+          <img class="editbtn img" src="edit.png" alt="editbutton">
+        </div>
+        <span class="date" value=${curr.description}>12/12/2023</span>
+      </div>`;
   });
-  addCompleted.insertAdjacentHTML("beforeend", html);
-  deleteTodoHandler(completedItemsData, "completed");
-  editTodoHandler(progressItemsData, "completed");
+  container.insertAdjacentHTML("beforeend", html);
+  deleteTodoHandler(data, type);
+  editTodoHandler(data, type);
   displayDate();
 }
-completed();
 
 function deleteTodoHandler(data, str) {
-  const deletebtnAll = addTask.querySelectorAll(".deletebtn");
-  const deletebtnProgress = addProgress.querySelectorAll(".deletebtn");
-  const deletebtnCompleted = addCompleted.querySelectorAll(".deletebtn");
-  if (str === "all") {
-    deletebtnAll.forEach((curr, i) => {
-      curr.addEventListener("click", () => deleteItem(i, data, str));
-    });
-  }
-  if (str === "progress") {
-    deletebtnProgress.forEach((curr, i) => {
-      curr.addEventListener("click", () => deleteItem(i, data, str));
-    });
-  }
-  if (str === "completed") {
-    deletebtnCompleted.forEach((curr, i) => {
-      curr.addEventListener("click", () => deleteItem(i, data, str));
-    });
-  }
+  const deleteBtns = document.querySelectorAll(`.${str}-lanee .deletebtn`);
+  deleteBtns.forEach((deleteBtn, i) => {
+    deleteBtn.addEventListener("click", () => deleteItem(i, data, str));
+  });
 }
 
-function deleteItem(i, data, str) {
+function deleteItem(i, data, type) {
   data.splice(i, 1);
-  if (str === "all") {
-    localStorage.setItem("all_items", JSON.stringify(data));
-  }
-  if (str === "progress") {
-    localStorage.setItem("progress_items", JSON.stringify(data));
-  }
-  if (str === "completed") {
-    localStorage.setItem("completed_items", JSON.stringify(data));
-  }
+  localStorage.setItem(`${type}_items`, JSON.stringify(data));
   location.reload();
 }
 
+renderTasks(allItemsdata, addTask, "all");
+renderTasks(progressItemsData, addProgress, "progress");
+renderTasks(completedItemsData, addCompleted, "completed");
+
 function editTodoHandler(localData, str) {
-  let editbtn = "";
-  if (str === "all") {
-    editbtn = addTask.querySelectorAll(".editbtn");
-  }
-  if (str === "progress") {
-    editbtn = addProgress.querySelectorAll(".editbtn");
-  }
-  if (str === "completed") {
-    editbtn = addCompleted.querySelectorAll(".editbtn");
+  let editbtn;
+  switch (str) {
+    case "all":
+      editbtn = addTask.querySelectorAll(".editbtn");
+      break;
+    case "progress":
+      editbtn = addProgress.querySelectorAll(".editbtn");
+      break;
+    case "completed":
+      editbtn = addCompleted.querySelectorAll(".editbtn");
+      break;
+    default:
+      editbtn = [];
   }
 
   editbtn.forEach((curr, i) => {
@@ -290,11 +229,10 @@ themeToggle.addEventListener("click", function () {
   theme.classList.toggle("position__theme");
   if (theme.classList.contains("position__theme")) {
     localStorage.setItem("theme", "end");
-    location.reload();
   } else {
     localStorage.setItem("theme", "start");
-    location.reload();
   }
+  location.reload();
 });
 
 // ------------------------Preview-------------------------------------
