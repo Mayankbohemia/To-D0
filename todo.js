@@ -62,8 +62,8 @@ backdrop.addEventListener("click", function () {
 //---------------------Date-----------------------------------
 function displayDate() {
   let date = new Date();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
   // console.log(hours, minutes)
   date = date.toString().split(" ");
   const displayDate = document.querySelectorAll(".date");
